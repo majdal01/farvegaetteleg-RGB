@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="SCSS/style.css">
     <script src="script.js" defer></script>
 
@@ -10,20 +14,21 @@
 </head>
 <body>
 
-    <header>
+    <header id="header">
         <h1>Farvegætteleg (RGB)</h1>
     </header>
 
-    <main>
+    <main id="spilleomraade">
         
         <div id="spil-container">
-            <section>
+            
+            <section class="farvefelter">
                 <h2>Klik på farven der passer til RGB-koden</h2>
                 <h3 id="rgb-koden"></h3>
                 <ul id="rgb-grid"></ul>
             </section>
 
-            <section>
+            <section class="scoretavle">
                 <h2>Din score</h2>
                 <p></p>
                 <p>ud af</p>
