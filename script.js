@@ -5,9 +5,9 @@ let rgbKode = document.getElementById("rgb-koden");
 // Generer RGB koder
 function genererRGB() {
     let rød = Math.floor(Math.random()*255+1);
-    let blå = Math.floor(Math.random()*255+1);
-    let grøn = Math.floor(Math.random()*255+1);   
-    return `RGB (${rød}, ${blå}, ${grøn})`;
+    let grøn = Math.floor(Math.random()*255+1);
+    let blå = Math.floor(Math.random()*255+1);   
+    return `rgb(${rød}, ${grøn}, ${blå})`;
 }
 
 function nytSpil() {
@@ -36,7 +36,14 @@ function nytSpil() {
         }; 
     
     let blandetArray = bland(farveArray);
-    console.log(blandetArray)
+    let ulRGB = document.getElementById("rgb-grid");
+
+    blandetArray.forEach(function(farve) {
+        let liRGB = document.createElement("li");
+        liRGB.textContent = "";
+        liRGB.style.backgroundColor = farve;
+        ulRGB.appendChild(liRGB)
+    });
 
 };
 
