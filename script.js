@@ -37,7 +37,10 @@ function nytSpil() {
     
     let blandetArray = bland(farveArray);
     let ulRGB = document.getElementById("rgb-grid");
+    ulRGB.innerHTML = "";
     let besked = document.getElementById('besked');
+    besked.textContent = "";
+    besked.style.backgroundColor = 'transparent';
 
     blandetArray.forEach(function(farve) {
         let liRGB = document.createElement("li");
@@ -46,14 +49,22 @@ function nytSpil() {
         liRGB.style.cursor = "pointer";
         ulRGB.appendChild(liRGB)
 
-    //når bruger klikker på en farve
-    liRGB.addEventListener("click", function(){
-        if (liRGB.style.backgroundColor === rigtigeFarve){
-            besked.textContent = 'Flot! Det er den rigtige farve.';
-        } else {
-            besked.textContent = 'Desværre. Prøv en anden farve.';
-        };
-    });
+        //når bruger klikker på en farve
+        liRGB.addEventListener("click", function(){
+            if (liRGB.style.backgroundColor === rigtigeFarve){
+                besked.textContent = 'Flot! Det er den rigtige farve. Klik her og generer ny kode.';
+                besked.style.backgroundColor = 'green';
+                besked.style.color = 'white';
+                besked.style.cursor = "pointer";
+                besked.addEventListener("click", function(){
+                    nytSpil();
+                })
+            } else {
+                besked.textContent = 'Desværre. Prøv en anden farve.';
+                besked.style.backgroundColor = 'yellow';
+                besked.style.color = 'black';
+            };
+        });
 
     });
 
