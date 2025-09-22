@@ -37,12 +37,24 @@ function nytSpil() {
     
     let blandetArray = bland(farveArray);
     let ulRGB = document.getElementById("rgb-grid");
+    let besked = document.getElementById('besked');
 
     blandetArray.forEach(function(farve) {
         let liRGB = document.createElement("li");
         liRGB.textContent = "";
         liRGB.style.backgroundColor = farve;
+        liRGB.style.cursor = "pointer";
         ulRGB.appendChild(liRGB)
+
+    //når bruger klikker på en farve
+    liRGB.addEventListener("click", function(){
+        if (liRGB.style.backgroundColor === rigtigeFarve){
+            besked.textContent = 'Flot! Det er den rigtige farve.';
+        } else {
+            besked.textContent = 'Desværre. Prøv en anden farve.';
+        };
+    });
+
     });
 
 };
