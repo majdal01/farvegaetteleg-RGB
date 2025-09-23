@@ -5,13 +5,13 @@ let ulRGB = document.getElementById("rgb-grid"); //grid til farverne
 let besked = document.getElementById('besked'); 
 //Scoretavle
 let score = document.getElementById("score");
-let forsøg = document.getElementById("taeller"); 
+let antalGæt = document.getElementById("taeller"); 
 //Nulstil
 let nulstil = document.getElementById("nulstil");
 
 //Placeres globalt, så den ikke nulstilles ved generering af ny kode
 let countScore = 0;
-let countForsøg = 0;
+let countGæt = 0;
 
 // Generer RGB koder
 function genererRGB() {
@@ -54,26 +54,40 @@ function nytSpil() {
 
         //når bruger klikker på en farve
         liRGB.addEventListener("click", function(){
+                liRGB.setAttribute('disabled', 'disabled');
+                //Tæller alle klik
+                countGæt++;
+                antalGæt.textContent = `${countGæt} gæt`;
+
             if (liRGB.style.backgroundColor === rigtigeFarve){
                 countScore++;
                 score.textContent = countScore;
-
+                
                 besked.textContent = 'Flot! Det er den rigtige farve. Klik her og generer ny kode.';
                 besked.style.backgroundColor = 'green';
                 besked.style.color = 'white';
                 besked.style.cursor = "pointer";
+
+                    let restFarver = document.querySelectorAll('#rgb-grid li');
+                    restFarver.forEach(function(element) {
+                    if (element !== liRGB) { 
+                    element.style.pointerEvents = 'none';
+                    element.style.backgroundColor = '#999';
+                    }
+                    });
+                    
+                    
                 besked.addEventListener("click", function(){
-                    nytSpil();
+                    if (besked.style.backgroundColor === 'green'){
+                    nytSpil();}
                 })
             } else {
-                countForsøg++;
-                forsøg.textContent = `${countForsøg} forsøg` ;
-
+                liRGB.style.backgroundColor = '#999';
                 besked.textContent = 'Desværre. Prøv en anden farve.';
                 besked.style.backgroundColor = 'yellow';
                 besked.style.color = 'black';
             };
-        });
+        }, { once: true});
 
     });
 };
@@ -81,9 +95,9 @@ function nytSpil() {
 nulstil.addEventListener("click", function() { 
      //Nulstilling af scoreboard
     countScore = 0;
-    countForsøg = 0;
+    countGæt = 0;
     score.textContent = 0;
-    forsøg.textContent = `${countForsøg} forsøg`;
+    antalGæt.textContent = `${countGæt} gæt`;
     nytSpil()
 });
 
