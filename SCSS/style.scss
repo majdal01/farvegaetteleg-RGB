@@ -1,8 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    
+    box-sizing: border-box;   
 }
 
 body {
@@ -18,7 +17,7 @@ body {
 
 #header {
     background-color: white;
-    padding: 2rem 8rem;
+    padding: 2rem 8.5rem;
     border-radius: 10px;
     margin-bottom: 2rem;
 
@@ -39,6 +38,25 @@ body {
     background-color: white;
     padding: 2rem;
     border-radius: 10px;
+}
+
+#rgb-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+
+        li {
+        list-style: none;
+        height: 5rem;
+        width: 5rem;
+        border-radius: 20px;
+
+            &:hover {
+                transform: scale(1.07);
+                transition: 0.3s;
+            } 
+        }
 }
 
 #spil-container {
@@ -114,19 +132,22 @@ body {
             font-weight: 200;
             height: 3.5rem;
             padding: 1rem;
+            text-align: center;
         }
     }
 
-#rgb-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1rem;
+button {
+    font-size: 1.5rem;
+    padding: 1rem 4rem;
+    border-radius: 10px;
     margin-top: 2rem;
-
-        li {
-        list-style: none;
-        height: 5rem;
-        width: 5rem;
-        border-radius: 20px;
-        }   
+    background-color: #192f5c;
+    border: 1px solid white;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(252, 252, 252, 0.5);
+    
+    &:hover {
+        background-color: #0f1c33;
+    }
 }

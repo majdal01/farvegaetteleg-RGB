@@ -2,6 +2,10 @@
 
 let rgbKode = document.getElementById("rgb-koden");
 
+//Placeres globalt, så den ikke nulstilles ved generering af ny kode
+let countScore = 0;
+let countForsøg = 0;
+
 // Generer RGB koder
 function genererRGB() {
     let rød = Math.floor(Math.random()*255+1);
@@ -46,12 +50,9 @@ function nytSpil() {
     besked.style.backgroundColor = 'transparent';
 
     //Scoretavle
-    let forsøg = document.getElementById("taeller"); 
-    let countForsøg = 0;
     let score = document.getElementById("score");
-    let countScore = 0;
+    let forsøg = document.getElementById("taeller"); 
     
-
     blandetArray.forEach(function(farve) {
         let liRGB = document.createElement("li");
         liRGB.textContent = "";
@@ -59,11 +60,14 @@ function nytSpil() {
         liRGB.style.cursor = "pointer";
         ulRGB.appendChild(liRGB)
 
+
+
         //når bruger klikker på en farve
         liRGB.addEventListener("click", function(){
             if (liRGB.style.backgroundColor === rigtigeFarve){
                 countScore++;
                 score.textContent = countScore;
+
                 besked.textContent = 'Flot! Det er den rigtige farve. Klik her og generer ny kode.';
                 besked.style.backgroundColor = 'green';
                 besked.style.color = 'white';
@@ -74,6 +78,7 @@ function nytSpil() {
             } else {
                 countForsøg++;
                 forsøg.textContent = `${countForsøg} forsøg` ;
+
                 besked.textContent = 'Desværre. Prøv en anden farve.';
                 besked.style.backgroundColor = 'yellow';
                 besked.style.color = 'black';
