@@ -35,12 +35,22 @@ function nytSpil() {
         return farveArray; 
         }; 
     
+    //Farver
     let blandetArray = bland(farveArray);
     let ulRGB = document.getElementById("rgb-grid");
     ulRGB.innerHTML = "";
+
+    //Beskeder
     let besked = document.getElementById('besked');
     besked.textContent = "";
     besked.style.backgroundColor = 'transparent';
+
+    //Scoretavle
+    let forsøg = document.getElementById("taeller"); 
+    let countForsøg = 0;
+    let score = document.getElementById("score");
+    let countScore = 0;
+    
 
     blandetArray.forEach(function(farve) {
         let liRGB = document.createElement("li");
@@ -52,6 +62,8 @@ function nytSpil() {
         //når bruger klikker på en farve
         liRGB.addEventListener("click", function(){
             if (liRGB.style.backgroundColor === rigtigeFarve){
+                countScore++;
+                score.textContent = countScore;
                 besked.textContent = 'Flot! Det er den rigtige farve. Klik her og generer ny kode.';
                 besked.style.backgroundColor = 'green';
                 besked.style.color = 'white';
@@ -60,12 +72,17 @@ function nytSpil() {
                     nytSpil();
                 })
             } else {
+                countForsøg++;
+                forsøg.textContent = `${countForsøg} forsøg` ;
                 besked.textContent = 'Desværre. Prøv en anden farve.';
                 besked.style.backgroundColor = 'yellow';
                 besked.style.color = 'black';
             };
         });
 
+        // scoretavle
+
+        console.log(forsøg);
     });
 
 };

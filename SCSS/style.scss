@@ -62,9 +62,15 @@ body {
 
     .scoretavle {
         background-color: #192f5c;
-        padding: 2rem;
+        padding: 1.5rem;
+        margin-top: 3rem;
         border-radius: 10px;
         color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 200px;
 
         h2 {
             font-weight: 200;
@@ -72,8 +78,27 @@ body {
             margin-bottom: 1rem;
         }
 
-        .taeller, .score {
+        .udaf {
+            padding-top: 1rem;
+            font-size: 1.2rem;
+        }
+
+        #score {
             font-family: 'Cursed Timer ULiL', sans-serif;
+            color: white;
+            border: 1px solid white;
+            border-radius: 10px;
+            height: 5rem;
+            width: 5rem;
+            font-size: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #taeller {
+            padding-top: 1rem;
+            font-size: 1.5rem;
         }
     }
 }
