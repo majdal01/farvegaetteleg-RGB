@@ -36,18 +36,9 @@ function nytSpil() {
         }
         farveArray.push(nyeFarver); //Hvis falsk, så push
     }
-
-    //Array af farver blandes (Fisher-Yates shuffle algoritmen) - ref: https://www.freecodecamp.org/news/how-to-shuffle-an-array-of-items-using-javascript-or-typescript/
-    function bland(farveArray) {
-        for (let i = farveArray.length - 1; i > 0; i--) { 
-            const j = Math.floor(Math.random() * (i + 1)); 
-            [farveArray[i], farveArray[j]] = [farveArray[j], farveArray[i]]; 
-            } 
-        return farveArray; 
-        }; 
     
-    //Farver
-    let blandetArray = bland(farveArray);
+    //Farver blandes
+    let blandetArray = farveArray.sort(() => Math.random() - 0.5);
     ulRGB.innerHTML = "";
 
     //Beskeder
