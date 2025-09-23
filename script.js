@@ -1,6 +1,11 @@
 'use strict';
 
 let rgbKode = document.getElementById("rgb-koden");
+let ulRGB = document.getElementById("rgb-grid"); //grid til farverne
+let besked = document.getElementById('besked'); 
+//Scoretavle
+let score = document.getElementById("score");
+let forsøg = document.getElementById("taeller"); 
 
 //Placeres globalt, så den ikke nulstilles ved generering af ny kode
 let countScore = 0;
@@ -41,26 +46,18 @@ function nytSpil() {
     
     //Farver
     let blandetArray = bland(farveArray);
-    let ulRGB = document.getElementById("rgb-grid");
     ulRGB.innerHTML = "";
 
     //Beskeder
-    let besked = document.getElementById('besked');
     besked.textContent = "";
     besked.style.backgroundColor = 'transparent';
-
-    //Scoretavle
-    let score = document.getElementById("score");
-    let forsøg = document.getElementById("taeller"); 
-    
+   
     blandetArray.forEach(function(farve) {
         let liRGB = document.createElement("li");
         liRGB.textContent = "";
         liRGB.style.backgroundColor = farve;
         liRGB.style.cursor = "pointer";
         ulRGB.appendChild(liRGB)
-
-
 
         //når bruger klikker på en farve
         liRGB.addEventListener("click", function(){
@@ -85,9 +82,6 @@ function nytSpil() {
             };
         });
 
-        // scoretavle
-
-        console.log(forsøg);
     });
 
 };
