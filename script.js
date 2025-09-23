@@ -6,6 +6,8 @@ let besked = document.getElementById('besked');
 //Scoretavle
 let score = document.getElementById("score");
 let forsøg = document.getElementById("taeller"); 
+//Nulstil
+let nulstil = document.getElementById("nulstil");
 
 //Placeres globalt, så den ikke nulstilles ved generering af ny kode
 let countScore = 0;
@@ -20,7 +22,7 @@ function genererRGB() {
 }
 
 function nytSpil() {
-    let rigtigeFarve = genererRGB();
+    let rigtigeFarve = genererRGB(); 
     rgbKode.textContent = rigtigeFarve;
 
     //Danner nu det array af farver, der skal vises
@@ -82,6 +84,10 @@ function nytSpil() {
             };
         });
 
+    });
+
+    nulstil.addEventListener("click", function() { 
+        nytSpil()
     });
 
 };
