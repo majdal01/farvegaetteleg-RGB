@@ -85,11 +85,15 @@ function nytSpil() {
         });
 
     });
-
-    nulstil.addEventListener("click", function() { 
-        nytSpil()
-    });
-
 };
+
+nulstil.addEventListener("click", function() { 
+     //Nulstilling af scoreboard
+    countScore = 0;
+    countForsøg = 0;
+    score.textContent = 0;
+    forsøg.textContent = `${countForsøg} forsøg`;
+    nytSpil()
+});
 
 nytSpil()
