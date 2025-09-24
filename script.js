@@ -81,7 +81,7 @@ function nytSpil() {
                 besked.style.color = 'white';
                 besked.style.cursor = "pointer";
 
-                deaktiverRestFarver();     
+                deaktiverRestFarver(liRGB);     
 
             } else {
                 liRGB.style.backgroundColor = '#999';
