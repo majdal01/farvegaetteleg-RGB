@@ -1,0 +1,182 @@
+
+/*Global*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #192f5c;
+  font-family: Arial, Helvetica, sans-serif, sans-serif;
+  color: rgb(0, 0, 0);
+}
+
+/*Header*/
+#header {
+  background-color: white;
+  padding: 2rem 8.5rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+#header h1 {
+  font-size: 3rem;
+  font-family: "DynaPuff", system-ui;
+  font-weight: 200;
+  background: linear-gradient(to left, violet, indigo, blue, green, orange, red);
+  background-clip: content-box;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/*Spilleområde*/
+#spilleomraade {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+#rgb-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+#rgb-grid li {
+  list-style: none;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 20px;
+}
+#rgb-grid li:hover {
+  transform: scale(1.07);
+  transition: 0.3s;
+}
+
+#spil-container {
+  display: flex;
+  gap: 4rem;
+  margin-bottom: 2rem;
+}
+.farvefelter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.farvefelter h2{
+    text-align: center;
+}
+.farvefelter h3 {
+  font-size: 1.8rem;
+  padding: 0.8rem;
+  border: 2px solid #192f5c;
+  border-radius: 10px;
+  margin-top: 1.5rem;
+}
+.scoretavle {
+  background-color: #192f5c;
+  padding: 1.5rem;
+  margin-top: 3rem;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 200px;
+}
+.scoretavle h2 {
+  font-weight: 200;
+  border-bottom: 2px solid white;
+  margin-bottom: 1rem;
+}
+.scoretavle .udaf {
+  padding-top: 1rem;
+  font-size: 1.2rem;
+}
+#score {
+  font-family: "Cursed Timer ULiL", sans-serif;
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+  height: 5rem;
+  width: 5rem;
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#taeller {
+  padding-top: 1rem;
+  font-size: 1.5rem;
+}
+#besked-container {
+  background-color: white;
+  min-height: 4rem;
+  border-top: 2px solid #192f5c;
+}
+#besked-container h3 {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  font-weight: 200;
+  height: 3.5rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+/*Footer*/
+button {
+  font-size: 1.5rem;
+  padding: 1rem 4rem;
+  border-radius: 10px;
+  margin-top: 2rem;
+  background-color: #192f5c;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(252, 252, 252, 0.5);
+}
+button:hover {
+  background-color: #0f1c33;
+}
+
+/*Media Query*/
+
+@media (max-width: 768px) {
+  #header {
+    padding: 2rem;
+  }
+  #header h1 {
+    font-size: 2.5rem;
+  }
+  #spil-container {
+    gap: 2rem;
+  }
+  #rgb-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  #rgb-grid li {
+    flex: 0 0 calc(25% - 0.4rem);
+    max-width: calc(25% - 0.4rem);
+  }
+  .scoretavle {
+    margin-top: auto;
+    min-width: auto;
+    min-width: 12rem;
+    max-height: 18rem;
+  }
+  button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+  }
+  
+}
