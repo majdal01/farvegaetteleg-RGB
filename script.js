@@ -1,19 +1,20 @@
 'use strict';
 
+//Variabler
 let rgbKode = document.getElementById("rgb-koden");
-let ulRGB = document.getElementById("rgb-grid"); //grid til farverne
+let ulRGB = document.getElementById("rgb-grid"); //grid til liRGB
 let besked = document.getElementById('besked'); 
 //Scoretavle
 let score = document.getElementById("score");
 let antalGæt = document.getElementById("taeller"); 
-//Nulstil
+//Nulstil button
 let nulstil = document.getElementById("nulstil");
 
-//Placeres globalt, så den ikke nulstilles ved generering af ny kode
+//Placeres globalt, så de ikke nulstilles ved generering af ny kode i nytSpil()
 let countScore = 0;
 let countGæt = 0;
 
-// Generer RGB koder
+//Funktioner til nytSpil()
 function genererRGB() {
     let rød = Math.floor(Math.random()*255+1);
     let grøn = Math.floor(Math.random()*255+1);
@@ -21,13 +22,31 @@ function genererRGB() {
     return `rgb(${rød}, ${grøn}, ${blå})`;
 }
 
+function resetBesked(){
+    besked.textContent = "";
+    besked.style.backgroundColor = 'transparent';
+    besked.style.cursor = 'default';
+}
+
+function deaktiverRestFarver(aktivfarve) {
+    document.querySelectorAll('#rgb-grid li').forEach(element => {
+        if (element !== aktivfarve) {
+            element.style.pointerEvents = 'none';
+            element.style.backgroundColor = '#999';
+        }
+    });
+}
+
 function nytSpil() {
+    resetBesked();
+
+    //Genererer koden der skal gættes
     let rigtigeFarve = genererRGB(); 
     rgbKode.textContent = rigtigeFarve;
 
-    //Danner nu det array af farver, der skal vises
+    //Danner det array af farver, der skal vises
     let farveArray = [];
-    farveArray.push(rigtigeFarve);
+    farveArray.push(rigtigeFarve); //Tilføjer koden der skal gættes
 
     for( let i = 0; i < 9; i++){
         let nyeFarver = genererRGB();
@@ -36,25 +55,19 @@ function nytSpil() {
         }
         farveArray.push(nyeFarver); //Hvis falsk, så push
     }
-    
     //Farver blandes
     let blandetArray = farveArray.sort(() => Math.random() - 0.5);
     ulRGB.innerHTML = "";
-
-    //Beskeder
-    besked.textContent = "";
-    besked.style.backgroundColor = 'transparent';
    
+    //Opretter farve-li
     blandetArray.forEach(function(farve) {
         let liRGB = document.createElement("li");
-        liRGB.textContent = "";
         liRGB.style.backgroundColor = farve;
         liRGB.style.cursor = "pointer";
-        ulRGB.appendChild(liRGB)
+        ulRGB.appendChild(liRGB);
 
         //når bruger klikker på en farve
         liRGB.addEventListener("click", function(){
-                liRGB.setAttribute('disabled', 'disabled');
                 //Tæller alle klik
                 countGæt++;
                 antalGæt.textContent = `${countGæt} gæt`;
@@ -68,29 +81,24 @@ function nytSpil() {
                 besked.style.color = 'white';
                 besked.style.cursor = "pointer";
 
-                    let restFarver = document.querySelectorAll('#rgb-grid li');
-                    restFarver.forEach(function(element) {
-                    if (element !== liRGB) { 
-                    element.style.pointerEvents = 'none';
-                    element.style.backgroundColor = '#999';
-                    }
-                    });
-                    
-                    
-                besked.addEventListener("click", function(){
-                    if (besked.style.backgroundColor === 'green'){
-                    nytSpil();}
-                })
+                deaktiverRestFarver();     
+
             } else {
                 liRGB.style.backgroundColor = '#999';
                 besked.textContent = 'Desværre. Prøv en anden farve.';
                 besked.style.backgroundColor = 'yellow';
                 besked.style.color = 'black';
             };
-        }, { once: true});
+        }, { once: true}); //eventlisteneren fjernes aut. efter første klik
 
     });
 };
+    
+//Tilføjer "knap", hvis rigtigt valg
+besked.addEventListener("click", function(){
+    if (besked.style.backgroundColor === 'green'){
+    nytSpil();}
+});
 
 nulstil.addEventListener("click", function() { 
      //Nulstilling af scoreboard
